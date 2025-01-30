@@ -7,12 +7,16 @@
 </head>
 <body>
     <h1>Bem-vindo ao CRUD MVC</h1>
+
     <button onclick="listarItens()">Listar Itens</button>
     <button onclick="cadastrarItem()">Cadastrar Item</button>
+    <button onclick="removerItem()">Remover Item</button>
+    <button onclick="buscarItem()">Buscar Item</button>
 
     <div id="itens"></div>
 
     <script>
+        // Função para listar itens
         function listarItens() {
             fetch("/api/itens/listar", {
                 method: "GET"
@@ -22,13 +26,14 @@
                 let itensDiv = document.getElementById("itens");
                 itensDiv.innerHTML = "<ul>";
                 data.forEach(item => {
-                    itensDiv.innerHTML += `<li>${item.nome}</li>`;
+                    itensDiv.innerHTML += `<li>${item.nome} (ID: ${item.id})</li>`;
                 });
                 itensDiv.innerHTML += "</ul>";
             })
             .catch(error => console.log(error));
         }
 
+        // Função para cadastrar um novo item
         function cadastrarItem() {
             const nome = prompt("Digite o nome do item:");
             const item = { nome: nome };
@@ -41,7 +46,47 @@
                 body: JSON.stringify(item)
             })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                alert("Item cadastrado com sucesso!");
+                listarItens();
+            })
+            .catch(error => console.log(error));
+        }
+
+        // Função para remover um item pelo nome
+        function removerItem() {
+            const nome = prompt("Digite o nome do item a ser removido:");
+
+            fetch(`/api/itens/remover?nome=${encodeURIComponent(nome)}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Item removido com sucesso!");
+                    listarItens();
+                } else {
+                    alert("Erro ao remover item.");
+                }
+            })
+            .catch(error => console.log(error));
+        }
+
+        // Função para buscar um item pelo nome
+        function buscarItem() {
+            const nome = prompt("Digite o nome do item para buscar:");
+
+            fetch(`/api/itens/buscar?nome=${encodeURIComponent(nome)}`, {
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    alert(`Item encontrado: ${data.nome} (ID: ${data.id})`);
+                } else {
+                    alert("Item não encontrado.");
+                }
+            })
             .catch(error => console.log(error));
         }
     </script>
