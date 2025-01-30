@@ -1,0 +1,4 @@
+com\crudmvc\itemController.class
+com\crudmvc\crudmvcApplication.class
+com\crudmvc\itemRepository.class
+com\crudmvc\item.class

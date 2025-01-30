@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD MVC</title>
+</head>
+<body>
+    <h1>Bem-vindo ao CRUD MVC</h1>
+    <button onclick="listarItens()">Listar Itens</button>
+    <button onclick="cadastrarItem()">Cadastrar Item</button>
+
+    <div id="itens"></div>
+
+    <script>
+        function listarItens() {
+            fetch("/api/itens/listar", {
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(data => {
+                let itensDiv = document.getElementById("itens");
+                itensDiv.innerHTML = "<ul>";
+                data.forEach(item => {
+                    itensDiv.innerHTML += `<li>${item.nome}</li>`;
+                });
+                itensDiv.innerHTML += "</ul>";
+            })
+            .catch(error => console.log(error));
+        }
+
+        function cadastrarItem() {
+            const nome = prompt("Digite o nome do item:");
+            const item = { nome: nome };
+
+            fetch("/api/itens/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(item)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+    </script>
+</body>
+</html>
