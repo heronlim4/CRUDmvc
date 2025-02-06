@@ -1,4 +1,6 @@
-C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\itemRepository.java
-C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\itemController.java
-C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\item.java
+C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\model\regrasDeNegocio\itemServices.java
+C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\model\entidade\item.java
+C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\model\regrasDeNegocio\itemConstraints.java
+C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\model\repositorio\itemRepository.java
+C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\controller\itemController.java
 C:\Users\Heron\Desktop\CRUDmvc\CRUDmvc\crudmvc\src\main\java\com\crudmvc\crudmvcApplication.java

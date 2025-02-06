@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Itens - CRUD MVC</title>
+    <title>Editar Itens - CRUD MVC</title>
     <style>
         * {
             margin: 0;
@@ -27,10 +27,19 @@
             font-size: 2rem;
         }
 
-        .button-container {
+        .form-container {
             display: flex;
-            gap: 10px;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 1rem;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
         }
 
         .button {
@@ -50,26 +59,16 @@
             background-color: #1991c1;
             transform: scale(1.05);
         }
-
-        #itens {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #14171a;
-        }
     </style>
 </head>
 <body>
-    <h1>Listar Itens</h1>
-    
-    <div class="button-container">
-        <button class="button" onclick="listarItens()">Listar Itens</button>
-        <button class="button" onclick="window.location.href='cadastrar.html'">Cadastrar Item</button>
-        <button class="button" onclick="window.location.href='buscar.html'">Buscar Item</button>
-    </div>
+    <h1>Editar Item</h1>
 
-    <div id="itens"></div>
+    <div class="form-container">
+        <input type="text" id="nome" class="input-field" placeholder="Digite o novo nome do item">
+        <button class="button" onclick="editarItem()">Editar Item</button>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
 </html>
-

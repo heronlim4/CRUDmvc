@@ -3,92 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD MVC</title>
+    <title>Listar Itens - CRUD MVC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f8fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #14171a;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #1da1f2;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .button:hover {
+            background-color: #1991c1;
+            transform: scale(1.05);
+        }
+
+        #itens {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #14171a;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bem-vindo ao CRUD MVC</h1>
-
-    <button onclick="listarItens()">Listar Itens</button>
-    <button onclick="cadastrarItem()">Cadastrar Item</button>
-    <button onclick="removerItem()">Remover Item</button>
-    <button onclick="buscarItem()">Buscar Item</button>
+    <h1>Listar Itens</h1>
+    
+    <div class="button-container">
+        <button class="button" onclick="listarItens()">Listar Itens</button>
+        <button class="button" onclick="window.location.href='cadastrar.html'">Cadastrar Item</button>
+        <button class="button" onclick="window.location.href='buscar.html'">Buscar Item</button>
+    </div>
 
     <div id="itens"></div>
 
-    <script>
-        // Função para listar itens
-        function listarItens() {
-            fetch("/api/itens/listar", {
-                method: "GET"
-            })
-            .then(response => response.json())
-            .then(data => {
-                let itensDiv = document.getElementById("itens");
-                itensDiv.innerHTML = "<ul>";
-                data.forEach(item => {
-                    itensDiv.innerHTML += `<li>${item.nome} (ID: ${item.id})</li>`;
-                });
-                itensDiv.innerHTML += "</ul>";
-            })
-            .catch(error => console.log(error));
-        }
-
-        // Função para cadastrar um novo item
-        function cadastrarItem() {
-            const nome = prompt("Digite o nome do item:");
-            const item = { nome: nome };
-
-            fetch("/api/itens/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(item)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                alert("Item cadastrado com sucesso!");
-                listarItens();
-            })
-            .catch(error => console.log(error));
-        }
-
-        // Função para remover um item pelo nome
-        function removerItem() {
-            const nome = prompt("Digite o nome do item a ser removido:");
-
-            fetch(`/api/itens/remover?nome=${encodeURIComponent(nome)}`, {
-                method: "DELETE"
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Item removido com sucesso!");
-                    listarItens();
-                } else {
-                    alert("Erro ao remover item.");
-                }
-            })
-            .catch(error => console.log(error));
-        }
-
-        // Função para buscar um item pelo nome
-        function buscarItem() {
-            const nome = prompt("Digite o nome do item para buscar:");
-
-            fetch(`/api/itens/buscar?nome=${encodeURIComponent(nome)}`, {
-                method: "GET"
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    alert(`Item encontrado: ${data.nome} (ID: ${data.id})`);
-                } else {
-                    alert("Item não encontrado.");
-                }
-            })
-            .catch(error => console.log(error));
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
+
